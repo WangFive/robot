@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="//y.gtimg.cn/mediastyle/yqq/player.css?max_age=2592000&amp;v=2017323">
+
+    <style type="text/css">
+        .player__ft {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            height: 11%;
+        }
+
+        .player_voice {
+            position: absolute;
+            top: 0;
+            left: 250px;
+            width: 80px;
+            padding-top: 13px;
+        }
+        .btn_big_voice {
+            top: 4px;
+            left: 10px;
+            width: 26px;
+            height: 21px;
+            background-position: 0 -144px;
+        }
+        .btn_big_voice--no {
+            background-position: 0 -182px;
+            left: -40px;
+        }
+    </style>
+    <title>Media Controller</title>
+</head>
+<body>
+
+<div class="player__ft" id="opbanner">
+    <a href="javascript:;" class="btn_big_prev" title="上一首"><span class="icon_txt">上一首</span></a>
+    <a href="javascript:;" class="btn_big_play btn_big_play--pause" id="btnplay" title="暂停"><span class="icon_txt">暂停</span></a>
+    <a href="javascript:;" class="btn_big_next" title="下一首"><span class="icon_txt">下一首</span></a>
+    <div class="player_progress player_voice" id="voice">
+        <a href="javascript:;" class="btn_big_voice btn_big_voice--no"><span class="icon_txt">减小音量</span></a>
+        <a href="javascript:;" class="btn_big_voice" id="spanmute" title="声音"><span class="icon_txt">增大音量</span></a>
+    </div>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
