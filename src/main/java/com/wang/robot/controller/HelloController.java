@@ -1,5 +1,6 @@
 package com.wang.robot.controller;
 
+import com.wang.robot.bean.Result;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +9,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**********************************************************
  * All Rights Reserved.
@@ -23,27 +28,106 @@ import java.awt.event.KeyEvent;
 @Controller
 @EnableAutoConfiguration
 public class HelloController {
+    static final int VK_SHIFT = 0x10;
+    static final int VK_CTRL = 0x11;
+    static final int VK_ALT = 0x12;
+    /**
+     * num *
+     */
     static final int VK_NUM_ASTERISK = 0x6A;
+    /**
+     * num +
+     */
+    static final int VK_NUM_PLUS = 0x6B;
+    /**
+     * num -
+     */
+    static final int VK_NUM_MINUS = 0x6D;
+
+    int[] defaultKeys = {VK_CTRL, VK_SHIFT, VK_ALT};
 
     @RequestMapping("/")
     String home() {
         return "/hello.html";
     }
 
-    @RequestMapping("/startOrStop")
+    @RequestMapping("/qqmusicControl")
     @ResponseBody
-    String stopMusic() throws AWTException {
-        Robot robot = new Robot();
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_SHIFT);
-        robot.keyPress(KeyEvent.VK_ALT);
+    String qqmusicControl(String cmd){
+        List<Integer> keys = getKeys();
+        switch (cmd){
+            case "startOrStop":
+                keys.add(VK_NUM_ASTERISK);
+                break;
+            case "prevSong":
+                keys.add(KeyEvent.VK_P);
+                break;
+            case "nextSong":
+                keys.add(KeyEvent.VK_N);
+                break;
+            case "increaseVolume":
+                keys.add(VK_NUM_PLUS);
+                break;
+            case "decreaseVolume":
+                keys.add(VK_NUM_MINUS);
+                break;
+            default:
+                keys.add(VK_NUM_ASTERISK);
+                break;
+        }
+        Result<String> result = keyPressAndRelease(keys);
+        return cmd;
+    }
 
-        robot.keyPress(VK_NUM_ASTERISK);// num *
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-        robot.keyRelease(KeyEvent.VK_SHIFT);
-        robot.keyRelease(KeyEvent.VK_ALT);
-        robot.keyRelease(VK_NUM_ASTERISK);
-        return "start or stop music!";
+    @RequestMapping("/systemControl")
+    @ResponseBody
+    String systemControl(String cmd){
+        String command = "";
+        switch (cmd){
+            case "shutdown":
+                command = "shutdown -s -t 1800";
+                break;
+            case "cancel":
+                command = "shutdown -a";
+                break;
+            default:
+                command = "shutdown -a";
+                break;
+        }
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            Process process = runtime.exec(command);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return cmd;
+    }
+
+    private Result<String> keyPressAndRelease(List<Integer> keys){
+        Robot robot = null;
+        Result<String> result = new Result<>();
+        try {
+            robot = new Robot();
+            for (int key : keys) {
+                robot.keyPress(key);
+            }
+            for (int key : keys) {
+                robot.keyRelease(key);
+            }
+        } catch (AWTException e) {
+            e.printStackTrace();
+            result.fail();
+            result.setMsg("catch exception");
+        }
+        return result;
+    }
+
+    private List<Integer> getKeys() {
+        List<Integer> keys = new ArrayList<>(4);
+        for (int key : defaultKeys) {
+            keys.add(key);
+        }
+        return keys;
     }
 
 }
