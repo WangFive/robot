@@ -31,13 +31,13 @@ body, button, input, select, textarea, th {
     font-size: 14px;
     line-height: 1.5;
     font-family: poppin,Tahoma,Arial,\5FAE\8F6F\96C5\9ED1,sans-serif;
-    font-family: Tahoma,Arial,\5FAE\8F6F\96C5\9ED1,sans-serif/9;
+    font-family: Tahoma,Arial,\5FAE\8F6F\96C5\9ED1,sans-serif;
 }
 
 .player__ft {
     position: absolute;
     top: 20px;
-    left: 0;
+    left: 10px;
     width: 100%;
     height: 11%;
 }
@@ -136,6 +136,26 @@ a {
     width: 32px;
     height: 32px;
     background-image: url("../img/cancel.png");
+    position: absolute;
+    opacity: .8;
+}
+
+.btn_down_voice {
+    top: 0;
+    left: 15px;
+    width: 32px;
+    height: 32px;
+    background-image: url("../img/volDown.png");
+    position: absolute;
+    opacity: .8;
+}
+
+.btn_up_voice {
+    top: 0;
+    left: 55px;
+    width: 32px;
+    height: 32px;
+    background-image: url("../img/volUp.png");
     position: absolute;
     opacity: .8;
 }

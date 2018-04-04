@@ -32,6 +32,12 @@ $("#decreaseVolume").click(function(){
     });
 });
 
+$("#muteVolume").click(function(){
+    $.get("/mediaControl?cmd=volumeMute",function(data, status){
+        myAlert("数据: " + data + "\n状态: " + status);
+    });
+});
+
 $(".btn_volume_mute").click(function(){
     $.get("/mediaControl?cmd=volumeMute",function(data, status){
         myAlert("数据: " + data + "\n状态: " + status);
