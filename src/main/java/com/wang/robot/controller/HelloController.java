@@ -1,6 +1,8 @@
 package com.wang.robot.controller;
 
 import com.wang.robot.bean.Result;
+import com.wang.robot.bean.VirtualKey;
+import com.wang.robot.service.VbsService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -76,6 +78,38 @@ public class HelloController {
                 break;
         }
         Result<String> result = keyPressAndRelease(keys);
+        return cmd;
+    }
+
+    @RequestMapping("/mediaControl")
+    @ResponseBody
+    String mediaControl(String cmd){
+        switch (cmd){
+            case "playOrPause":
+                VbsService.execKeyVbs(VirtualKey.VK_MEDIA_PLAY_PAUSE.getKeyValue());
+                break;
+            case "prevSong":
+                VbsService.execKeyVbs(VirtualKey.VK_MEDIA_PREV_TRACK.getKeyValue());
+                break;
+            case "nextSong":
+                VbsService.execKeyVbs(VirtualKey.VK_MEDIA_NEXT_TRACK.getKeyValue());
+                break;
+            case "volumeUp":
+                VbsService.execKeyVbs(VirtualKey.VK_VOLUME_UP.getKeyValue());
+                break;
+            case "volumeDown":
+                VbsService.execKeyVbs(VirtualKey.VK_VOLUME_DOWN.getKeyValue());
+                break;
+            case "volumeMute":
+                VbsService.execKeyVbs(VirtualKey.VK_VOLUME_MUTE.getKeyValue());
+                break;
+            case "stop":
+                VbsService.execKeyVbs(VirtualKey.VK_MEDIA_STOP.getKeyValue());
+                break;
+            default:
+                VbsService.execKeyVbs(VirtualKey.VK_MEDIA_PLAY_PAUSE.getKeyValue());
+                break;
+        }
         return cmd;
     }
 
