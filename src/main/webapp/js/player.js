@@ -3,35 +3,46 @@ function myAlert(msg){
 }
 
 $(".btn_big_prev").click(function(){
-    $.get("/qqmusicControl?cmd=prevSong",function(data, status){
+    $.get("/mediaControl?cmd=prevSong",function(data, status){
         myAlert("数据: " + data + "\n状态: " + status);
     });
 });
 
 $(".btn_big_play").click(function(){
-    $.get("/qqmusicControl?cmd=startOrStop",function(data, status){
+    $.get("/mediaControl?cmd=playOrPause",function(data, status){
         myAlert("数据: " + data + "\n状态: " + status);
     });
 });
 
 $(".btn_big_next").click(function(){
-    $.get("/qqmusicControl?cmd=nextSong",function(data, status){
+    $.get("/mediaControl?cmd=nextSong",function(data, status){
         myAlert("数据: " + data + "\n状态: " + status);
     });
 });
 
 $("#increaseVolume").click(function(){
-    $.get("/qqmusicControl?cmd=increaseVolume",function(data, status){
+    $.get("/mediaControl?cmd=volumeUp",function(data, status){
         myAlert("数据: " + data + "\n状态: " + status);
     });
 });
 
 $("#decreaseVolume").click(function(){
-    $.get("/qqmusicControl?cmd=decreaseVolume",function(data, status){
+    $.get("/mediaControl?cmd=volumeDown",function(data, status){
         myAlert("数据: " + data + "\n状态: " + status);
     });
 });
 
+$(".btn_volume_mute").click(function(){
+    $.get("/mediaControl?cmd=volumeMute",function(data, status){
+        myAlert("数据: " + data + "\n状态: " + status);
+    });
+});
+
+$(".btn_stop").click(function(){
+    $.get("/mediaControl?cmd=stop",function(data, status){
+        myAlert("数据: " + data + "\n状态: " + status);
+    });
+});
 
 $(".btn_shutdown").click(function(){
     $.get("/systemControl?cmd=shutdown",function(data, status){

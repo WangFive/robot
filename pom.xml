@@ -6,10 +6,10 @@
 	<groupId>com.wang</groupId>
 	<artifactId>robot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>robot</name>
-	<description>robot for qq music</description>
+	<description>robot for remote control</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
