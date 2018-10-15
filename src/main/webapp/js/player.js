@@ -1,5 +1,5 @@
 function myAlert(msg){
-    alert(msg);
+    //alert(msg);
 }
 
 function execCmd(cmd){
